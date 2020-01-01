@@ -1,0 +1,11 @@
+﻿@using sample_use_proxy.Data
+<p>
+    Details: @Forecast.Description.Summary
+</p>
+
+@code {
+
+    [Parameter]
+    public WeatherForecast Forecast { get; set; }
+
+}

@@ -24,22 +24,38 @@ namespace sample_use_proxy.Data
             var weatherEntity = modelBuilder
                 .Entity<WeatherForecast>();
 
-            weatherEntity.Property<int>("Id")
+            weatherEntity
+                .Property(w => w.Id)
                 .ValueGeneratedOnAdd();
-            weatherEntity.HasKey("Id");
+            weatherEntity
+                .Ignore(w => w.TemperatureF);
 
-            weatherEntity.Ignore(w => w.TemperatureF);
+            var descriptionEntity = modelBuilder
+                .Entity<Description>();
+            descriptionEntity
+                .Property(d => d.Id)
+                .ValueGeneratedOnAdd();
+
+            weatherEntity.HasOne(w => w.Description);
+
 
             #region Seed
 
             var rng = new Random();
 
-            var weatherForecasts = Enumerable.Range(1, 5).Select(index => new
+            modelBuilder.Entity<Description>()
+                .HasData(Enumerable.Range(1, Summaries.Length).Select(index => new
+                {
+                    Id = index,
+                    Summary = Summaries[index - 1]
+                }));
+
+            object[] weatherForecasts = Enumerable.Range(1, 5).Select(index => new
             {
                 Id = index,
                 Date = DateTime.Now.AddDays(index),
                 TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
+                DescriptionId = rng.Next(Summaries.Length)
             }).ToArray();
 
             modelBuilder.Entity<WeatherForecast>()

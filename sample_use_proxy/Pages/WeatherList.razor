@@ -1,0 +1,75 @@
+﻿@page "/fetchdata"
+@page "/fetchdata/details/{Id:int}"
+
+@using Microsoft.EntityFrameworkCore
+@using sample_use_proxy.Data
+
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+
+    @if (selectedForecast != null)
+    {
+        <WeatherDetails Forecast="@selectedForecast" />
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temp. (C)</th>
+                <th>Temp. (F)</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var forecast in forecasts)
+            {
+                <tr>
+                    <td><a href="/fetchdata/details/@forecast.Id"> @forecast.Date.ToShortDateString()</a></td>
+                    <td>@forecast.TemperatureC</td>
+                    <td>@forecast.TemperatureF</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+
+}
+
+@code {
+    private WeatherForecast[] forecasts;
+
+    private WeatherForecast selectedForecast;
+
+    protected override async Task OnInitializedAsync()
+    {
+        using (WeatherContext context = new WeatherContext())
+        {
+            forecasts = await context.Forecasts.ToArrayAsync();
+        }
+    }
+
+    [Parameter]
+    public int Id { get; set; } = 0;
+
+    protected override async void OnParametersSet()
+    {
+        if (Id > 0)
+        {
+
+            // metigates " A second operation started on this context before a previous operation completed"
+            using (WeatherContext context = new WeatherContext())
+            {
+                selectedForecast = await context.Forecasts.FirstOrDefaultAsync(w => w.Id == Id);
+            }
+        }
+    }
+}

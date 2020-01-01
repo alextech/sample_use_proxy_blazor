@@ -28,7 +28,6 @@ namespace sample_use_proxy
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
 
             services.AddScoped<WeatherContext>();
         }
