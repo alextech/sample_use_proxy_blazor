@@ -8,7 +8,7 @@ Lazy Loading Proxies are needed to avoid cartesian explosion in master/detail st
 
 After some clicking around `fetchdata` page, crashes with
 
-`
+```
 Unhandled exception rendering component: Error generated for warning 'Microsoft.EntityFrameworkCore.Infrastructure.LazyLoadOnDisposedContextWarning': An attempt was made to lazy-load navigation property 'Description' on entity type 'WeatherForecastProxy' after the ass
 ociated DbContext was disposed. This exception can be suppressed or logged by passing event ID 'CoreEventId.LazyLoadOnDisposedContextWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.
 System.InvalidOperationException: Error generated for warning 'Microsoft.EntityFrameworkCore.Infrastructure.LazyLoadOnDisposedContextWarning': An attempt was made to lazy-load navigation property 'Description' on entity type 'WeatherForecastProxy' after the associated DbCon
@@ -41,4 +41,4 @@ text was disposed. This exception can be suppressed or logged by passing event I
    at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment)
    at Microsoft.AspNetCore.Components.RenderTree.Renderer.RenderInExistingBatch(RenderQueueEntry renderQueueEntry)
    at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
-`
+```
