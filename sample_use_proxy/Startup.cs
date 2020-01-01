@@ -29,6 +29,8 @@ namespace sample_use_proxy
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+
+            services.AddScoped<WeatherContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

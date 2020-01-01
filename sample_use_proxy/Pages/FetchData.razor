@@ -1,7 +1,8 @@
 ﻿@page "/fetchdata"
 
+@using Microsoft.EntityFrameworkCore
 @using sample_use_proxy.Data
-@inject WeatherForecastService ForecastService
+@inject WeatherContext WeatherContext
 
 <h1>Weather forecast</h1>
 
@@ -41,6 +42,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+        forecasts = await WeatherContext.Forecasts.ToArrayAsync();
     }
 }
