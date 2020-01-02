@@ -3,6 +3,7 @@
 
 @using Microsoft.EntityFrameworkCore
 @using sample_use_proxy.Data
+@inject NavigationManager NavigationManager
 
 @inherits OwningComponentBase<WeatherContext>
 
@@ -53,7 +54,11 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        Console.WriteLine("Initialize BEGIN on "+ DateTimeOffset.Now +" at URL: " + NavigationManager.Uri);
+
         forecasts = await Service.Forecasts.ToArrayAsync();
+
+        Console.WriteLine("Initialize END on "+ DateTimeOffset.Now +" at URL: " + NavigationManager.Uri);
     }
 
     [Parameter]
@@ -61,9 +66,13 @@ else
 
     protected override async void OnParametersSet()
     {
+        Console.WriteLine("Setting Parameters BEGIN on "+ DateTimeOffset.Now +" at URL: " + NavigationManager.Uri);
+
         if (Id > 0)
         {
             selectedForecast = await Service.Forecasts.FirstOrDefaultAsync(w => w.Id == Id);
         }
+
+        Console.WriteLine("Setting Parameters END on "+ DateTimeOffset.Now +" at URL: " + NavigationManager.Uri);
     }
 }

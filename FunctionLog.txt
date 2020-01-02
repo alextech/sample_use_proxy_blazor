@@ -1,0 +1,35 @@
+===== if access /fetchata  FIRST, THEN /details/{id} ====
+
+      Content root path: C:\devel\samples\sample_use_proxy_blazor\sample_use_proxy
+Initialize BEGIN on 02.01.2020 16:01:05 -05:00 at URL: https://localhost:5001/fetchdata
+Initialize END on 02.01.2020 16:01:06 -05:00 at URL: https://localhost:5001/fetchdata
+Setting Parameters BEGIN on 02.01.2020 16:01:06 -05:00 at URL: https://localhost:5001/fetchdata
+Setting Parameters END on 02.01.2020 16:01:06 -05:00 at URL: https://localhost:5001/fetchdata
+Setting Parameters BEGIN on 02.01.2020 16:01:23 -05:00 at URL: https://localhost:5001/fetchdata/details/1
+Setting Parameters END on 02.01.2020 16:01:23 -05:00 at URL: https://localhost:5001/fetchdata/details/1
+Setting Parameters BEGIN on 02.01.2020 16:01:25 -05:00 at URL: https://localhost:5001/fetchdata/details/2
+warn: Microsoft.AspNetCore.Components.Server.Circuits.RemoteRenderer[100]
+      Unhandled exception rendering component: A second operation started on this context before a previous operation completed. This is usually caused by different threads using the same instance of DbC
+ontext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+System.InvalidOperationException: A second operation started on this context before a previous operation completed. 
+
+=== if access /details/{id} directly WITHOUT going to /fetchdata first
+Initialize BEGIN on 02.01.2020 16:03:26 -05:00 at URL: https://localhost:5001/fetchdata
+Initialize END on 02.01.2020 16:03:26 -05:00 at URL: https://localhost:5001/fetchdata
+Setting Parameters BEGIN on 02.01.2020 16:03:26 -05:00 at URL: https://localhost:5001/fetchdata
+Setting Parameters END on 02.01.2020 16:03:26 -05:00 at URL: https://localhost:5001/fetchdata
+Initialize BEGIN on 02.01.2020 16:03:32 -05:00 at URL: https://localhost:5001/fetchdata/details/2
+Initialize END on 02.01.2020 16:03:32 -05:00 at URL: https://localhost:5001/fetchdata/details/2
+Setting Parameters BEGIN on 02.01.2020 16:03:32 -05:00 at URL: https://localhost:5001/fetchdata/details/2
+Setting Parameters END on 02.01.2020 16:03:32 -05:00 at URL: https://localhost:5001/fetchdata/details/2
+Initialize BEGIN on 02.01.2020 16:03:33 -05:00 at URL: https://localhost:5001/fetchdata/details/2
+Initialize END on 02.01.2020 16:03:33 -05:00 at URL: https://localhost:5001/fetchdata/details/2
+Setting Parameters BEGIN on 02.01.2020 16:03:33 -05:00 at URL: https://localhost:5001/fetchdata/details/2
+Setting Parameters END on 02.01.2020 16:03:33 -05:00 at URL: https://localhost:5001/fetchdata/details/2
+Initialize BEGIN on 02.01.2020 16:03:35 -05:00 at URL: https://localhost:5001/fetchdata/details/2
+Initialize END on 02.01.2020 16:03:35 -05:00 at URL: https://localhost:5001/fetchdata/details/2
+Setting Parameters BEGIN on 02.01.2020 16:03:35 -05:00 at URL: https://localhost:5001/fetchdata/details/2
+Initialize BEGIN on 02.01.2020 16:03:36 -05:00 at URL: https://localhost:5001/fetchdata/details/2
+Initialize END on 02.01.2020 16:03:36 -05:00 at URL: https://localhost:5001/fetchdata/details/2
+Setting Parameters BEGIN on 02.01.2020 16:03:36 -05:00 at URL: https://localhost:5001/fetchdata/details/2
+Setting Parameters END on 02.01.2020 16:03:36 -05:00 at URL: https://localhost:5001/fetchdata/details/2
